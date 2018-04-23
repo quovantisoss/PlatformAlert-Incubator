@@ -10,10 +10,13 @@ RUN pip install virtualenv
 RUN virtualenv -p /usr/bin/python3  /opt/apps/venv
 
 COPY . /opt/apps/platformalert
-RUN /opt/apps/venv/bin/pip install -r /opt/apps/platformalert/requirements/dev.txt
+RUN /opt/apps/venv/bin/pip install -r /opt/apps/platformalert/py-requirements/dev.txt
 
 ENTRYPOINT ["dumb-init", "/opt/apps/venv/bin/python", "manage.py"]
 
 
-## docker build -t unity-web:latest .
-## docker run -w /opt/apps/unify-web -p 5000:5000 -it unity-web:latest /bin/sh
+## Building Image
+## docker build -t platformalert:latest .
+
+## Running the container
+## docker run -w /opt/apps/platformalert -p 5000:5000 -it platformalert:latest /bin/sh
